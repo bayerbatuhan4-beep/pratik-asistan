@@ -8,43 +8,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Yan Menü Arka Plan Karartma -->
   <div id="drawer-overlay" class="drawer-overlay"></div>
 
-  <!-- Açılır Yan Menü (Hamburger Drawer) -->
+  <!-- Açılır Yan Menü -->
   <aside id="side-drawer" class="side-drawer glass">
-    <div class="drawer-header">
-      <div class="logo">
-        <span class="logo-icon">P</span>
-        <span class="logo-text">Pratik<strong>Asistan</strong></span>
+    <div>
+      <div class="drawer-header">
+        <div class="logo">
+          <span class="logo-icon">P</span>
+          <span class="logo-text">Pratik<strong>Asistan</strong></span>
+        </div>
+        <button id="close-drawer" class="icon-btn" aria-label="Menüyü Kapat">✕</button>
       </div>
-      <button id="close-drawer" class="icon-btn" aria-label="Menüyü Kapat">✕</button>
-    </div>
 
-    <div class="drawer-section">
-      <p class="drawer-title">Menü</p>
-      <nav class="drawer-nav">
-        <button class="drawer-link active" data-tab="planner">📅 Planlayıcı</button>
-        <button class="drawer-link" data-tab="decision">⚡ Hızlı Karar & Hediye</button>
-        <button class="drawer-link" data-tab="rewards">🏆 Ödüller & İndirimler</button>
-      </nav>
-    </div>
-
-    <div class="drawer-section">
-      <p class="drawer-title">Tema Ayarları</p>
-      <div class="theme-row">
-        <span>Karanlık / Aydınlık Mod</span>
-        <label class="switch">
-          <input type="checkbox" id="theme-toggle" checked />
-          <span class="slider"></span>
-        </label>
+      <div class="drawer-section">
+        <p class="drawer-title">Menü</p>
+        <nav class="drawer-nav">
+          <button class="drawer-link active" data-tab="planner">📅 Planlayıcı</button>
+          <button class="drawer-link" data-tab="decision">⚡ Hızlı Karar & Hediye</button>
+          <button class="drawer-link" data-tab="rewards">🏆 Ödüller & İndirimler</button>
+        </nav>
       </div>
-      <p class="sub-label">Tema Rengi</p>
-      <div class="color-palette">
-        <button class="color-dot active" data-color="purple" style="background:#8b5cf6" aria-label="Mor"></button>
-        <button class="color-dot" data-color="cyan" style="background:#06b6d4" aria-label="Turkuaz"></button>
-        <button class="color-dot" data-color="pink" style="background:#ec4899" aria-label="Pembe"></button>
-        <button class="color-dot" data-color="emerald" style="background:#10b981" aria-label="Zümrüt"></button>
+
+      <div class="drawer-section">
+        <p class="drawer-title">Tema Ayarları</p>
+        <div class="theme-row">
+          <span>Karanlık / Aydınlık Mod</span>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <p class="sub-label">Tema Rengi</p>
+        <div class="color-palette">
+          <button class="color-dot active" data-color="purple" style="background:#8b5cf6" aria-label="Mor"></button>
+          <button class="color-dot" data-color="cyan" style="background:#06b6d4" aria-label="Turkuaz"></button>
+          <button class="color-dot" data-color="pink" style="background:#ec4899" aria-label="Pembe"></button>
+          <button class="color-dot" data-color="emerald" style="background:#10b981" aria-label="Zümrüt"></button>
+        </div>
       </div>
     </div>
 
@@ -74,10 +75,89 @@
     </div>
   </header>
 
-  <!-- Ana İçerik Alanı -->
+  <!-- Ana İçerik -->
   <main class="container">
-    <!-- SEKME 1: PLANLAYICI -->
+    <!-- SEKME 1: PROFESYONEL PLANLAYICI -->
     <section id="tab-planner" class="tab-content active">
+      <!-- Özet İstatistik Barı -->
+      <div class="stats-grid">
+        <div class="card glass stat-card">
+          <span class="stat-label">Yıllık Hedef Ortalaması</span>
+          <strong class="stat-value" id="annual-avg">%0</strong>
+          <div class="progress-bar"><div class="progress-fill" id="annual-avg-bar" style="width: 0%"></div></div>
+        </div>
+        <div class="card glass stat-card">
+          <span class="stat-label">Toplam Puan & Seviye</span>
+          <strong class="stat-value" id="planner-xp">0 XP (Seviye 1)</strong>
+          <span class="muted" style="font-size:0.8rem">Görev tamamladıkça indirim çekleri açılır!</span>
+        </div>
+      </div>
+
+      <!-- Günlük Görevler -->
       <div class="card glass">
-        <h2>📅 Planlayıcı Modülü</h2>
-        <p class="muted">Adım 2'de buraya Günlük Görevler, Aylık Alışkanlık Zinciri ve Yıllık Hed
+        <div class="card-header">
+          <h2>📌 Günlük Görevler <span class="badge-soft">+25 XP</span></h2>
+        </div>
+        <form id="daily-form" class="inline-form">
+          <input type="text" id="daily-input" placeholder="Yeni günlük görev yaz..." required />
+          <select id="daily-priority">
+            <option value="high">🔥 Kritik</option>
+            <option value="normal" selected>⚡ Normal</option>
+          </select>
+          <button type="submit" class="btn-primary">+ Ekle</button>
+        </form>
+        <ul id="daily-list" class="task-list"></ul>
+      </div>
+
+      <!-- Aylık Alışkanlıklar (Zinciri Kırma) -->
+      <div class="card glass">
+        <div class="card-header">
+          <h2>🔥 Aylık Alışkanlıklar (Zinciri Kırma) <span class="badge-soft">+15 XP</span></h2>
+        </div>
+        <form id="habit-form" class="inline-form">
+          <input type="text" id="habit-input" placeholder="Yeni alışkanlık (örn: 2L Su İç, Kodlama)..." required />
+          <button type="submit" class="btn-primary">+ Alışkanlık Ekle</button>
+        </form>
+        <div id="habit-list" class="habit-container"></div>
+      </div>
+
+      <!-- Yıllık Hedefler -->
+      <div class="card glass">
+        <div class="card-header">
+          <h2>🎯 Yıllık Hedefler <span class="badge-soft">+100 XP</span></h2>
+        </div>
+        <form id="annual-form" class="inline-form">
+          <input type="text" id="annual-title" placeholder="Hedef adı (örn: 12 Kitap Oku)..." required />
+          <input type="number" id="annual-target" placeholder="Hedef sayı (örn: 12)" min="1" max="1000" required style="max-width: 160px;" />
+          <button type="submit" class="btn-primary">+ Hedef Ekle</button>
+        </form>
+        <div id="annual-list" class="annual-grid"></div>
+      </div>
+    </section>
+
+    <!-- SEKME 2: HIZLI KARAR & HEDİYE -->
+    <section id="tab-decision" class="tab-content">
+      <div class="card glass">
+        <h2>🎯 Ortak Karar & Akıllı Hediye Bulucu</h2>
+        <p class="muted">Adım 3'te buraya Oda Oluşturma ve Hediye Filtresi gelecek.</p>
+      </div>
+    </section>
+
+    <!-- SEKME 3: ÖDÜLLER & İNDİRİM ÇEKLERİ -->
+    <section id="tab-rewards" class="tab-content">
+      <div class="card glass">
+        <h2>🎁 Kazanılan Ödüller & İndirim Çekleri</h2>
+        <p class="muted">Adım 3'te buraya XP ile açılan indirim kuponları gelecek.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Günün Motivasyonu: Hedeflerine bir adım daha yaklaş!</span>
+    <span class="dev-sign">Geliştirici: <strong>Batuhan Bayer</strong></span>
+  </footer>
+
+  <script src="js/planner.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
