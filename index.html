@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark" data-accent="purple">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PratikAsistan | Günlük Hayat & Hedef Asistanı</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Yan Menü Arka Plan Karartma -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+
+  <!-- Açılır Yan Menü (Hamburger Drawer) -->
+  <aside id="side-drawer" class="side-drawer glass">
+    <div class="drawer-header">
+      <div class="logo">
+        <span class="logo-icon">P</span>
+        <span class="logo-text">Pratik<strong>Asistan</strong></span>
+      </div>
+      <button id="close-drawer" class="icon-btn" aria-label="Menüyü Kapat">✕</button>
+    </div>
+
+    <div class="drawer-section">
+      <p class="drawer-title">Menü</p>
+      <nav class="drawer-nav">
+        <button class="drawer-link active" data-tab="planner">📅 Planlayıcı</button>
+        <button class="drawer-link" data-tab="decision">⚡ Hızlı Karar & Hediye</button>
+        <button class="drawer-link" data-tab="rewards">🏆 Ödüller & İndirimler</button>
+      </nav>
+    </div>
+
+    <div class="drawer-section">
+      <p class="drawer-title">Tema Ayarları</p>
+      <div class="theme-row">
+        <span>Karanlık / Aydınlık Mod</span>
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="sub-label">Tema Rengi</p>
+      <div class="color-palette">
+        <button class="color-dot active" data-color="purple" style="background:#8b5cf6" aria-label="Mor"></button>
+        <button class="color-dot" data-color="cyan" style="background:#06b6d4" aria-label="Turkuaz"></button>
+        <button class="color-dot" data-color="pink" style="background:#ec4899" aria-label="Pembe"></button>
+        <button class="color-dot" data-color="emerald" style="background:#10b981" aria-label="Zümrüt"></button>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <p class="dev-sign">Geliştirici: <strong>Batuhan Bayer</strong></p>
+    </div>
+  </aside>
+
+  <!-- Üst Navigasyon Barı -->
+  <header class="topbar glass">
+    <div class="topbar-left">
+      <button id="open-drawer" class="icon-btn" aria-label="Menüyü Aç">☰</button>
+      <div class="logo">
+        <span class="logo-icon">P</span>
+        <span class="logo-text">Pratik<strong>Asistan</strong></span>
+      </div>
+    </div>
+
+    <nav class="main-tabs">
+      <button class="tab-btn active" data-tab="planner">⚡ Planlayıcı</button>
+      <button class="tab-btn" data-tab="decision">🎯 Hızlı Karar</button>
+      <button class="tab-btn" data-tab="rewards">🎁 Ödüller</button>
+    </nav>
+
+    <div class="topbar-right">
+      <span class="xp-badge" id="header-xp">0 XP • Sv. 1</span>
+    </div>
+  </header>
+
+  <!-- Ana İçerik Alanı -->
+  <main class="container">
+    <!-- SEKME 1: PLANLAYICI -->
+    <section id="tab-planner" class="tab-content active">
+      <div class="card glass">
+        <h2>📅 Planlayıcı Modülü</h2>
+        <p class="muted">Adım 2'de buraya Günlük Görevler, Aylık Alışkanlık Zinciri ve Yıllık Hed

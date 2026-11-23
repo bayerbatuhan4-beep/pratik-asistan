@@ -1,0 +1,137 @@
+:root {
+  --bg-color: #0b0f19;
+  --surface: rgba(23, 30, 48, 0.72);
+  --border: rgba(255, 255, 255, 0.1);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --accent: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.35);
+}
+
+[data-theme="light"] {
+  --bg-color: #f1f5f9;
+  --surface: rgba(255, 255, 255, 0.85);
+  --border: rgba(15, 23, 42, 0.1);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+}
+
+[data-accent="purple"] { --accent: #8b5cf6; --accent-glow: rgba(139, 92, 246, 0.35); }
+[data-accent="cyan"]   { --accent: #06b6d4; --accent-glow: rgba(6, 182, 212, 0.35); }
+[data-accent="pink"]   { --accent: #ec4899; --accent-glow: rgba(236, 72, 153, 0.35); }
+[data-accent="emerald"]{ --accent: #10b981; --accent-glow: rgba(16, 185, 129, 0.35); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+body {
+  background: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s, color 0.3s;
+}
+
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+}
+
+/* Üst Bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  gap: 1rem;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 0.75rem; }
+
+.logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem; }
+.logo-icon {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.main-tabs { display: flex; gap: 0.5rem; }
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.tab-btn.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+.xp-badge {
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Yan Menü (Drawer) */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
+.side-drawer {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 280px;
+  height: 100vh;
+  z-index: 60;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: left 0.3s ease;
+}
+.side-drawer.open { left: 0; }
+
+.drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.drawer-section { margin-bottom: 1.5rem; }
+.drawer-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.75rem; }
+
+.drawer-nav { display: flex; flex-direction: column; gap: 0.4rem
