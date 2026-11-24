@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr" data-theme="dark" data-accent="purple">
 <head>
   <meta charset="UTF-8" />
@@ -79,7 +79,6 @@
   <main class="container">
     <!-- SEKME 1: PROFESYONEL PLANLAYICI -->
     <section id="tab-planner" class="tab-content active">
-      <!-- Özet İstatistik Barı -->
       <div class="stats-grid">
         <div class="card glass stat-card">
           <span class="stat-label">Yıllık Hedef Ortalaması</span>
@@ -93,7 +92,6 @@
         </div>
       </div>
 
-      <!-- Günlük Görevler -->
       <div class="card glass">
         <div class="card-header">
           <h2>📌 Günlük Görevler <span class="badge-soft">+25 XP</span></h2>
@@ -109,7 +107,6 @@
         <ul id="daily-list" class="task-list"></ul>
       </div>
 
-      <!-- Aylık Alışkanlıklar (Zinciri Kırma) -->
       <div class="card glass">
         <div class="card-header">
           <h2>🔥 Aylık Alışkanlıklar (Zinciri Kırma) <span class="badge-soft">+15 XP</span></h2>
@@ -121,7 +118,6 @@
         <div id="habit-list" class="habit-container"></div>
       </div>
 
-      <!-- Yıllık Hedefler -->
       <div class="card glass">
         <div class="card-header">
           <h2>🎯 Yıllık Hedefler <span class="badge-soft">+100 XP</span></h2>
@@ -135,19 +131,68 @@
       </div>
     </section>
 
-    <!-- SEKME 2: HIZLI KARAR & HEDİYE -->
+    <!-- SEKME 2: ORTAK KARAR & AKILLI HEDİYE BULUCU -->
     <section id="tab-decision" class="tab-content">
-      <div class="card glass">
-        <h2>🎯 Ortak Karar & Akıllı Hediye Bulucu</h2>
-        <p class="muted">Adım 3'te buraya Oda Oluşturma ve Hediye Filtresi gelecek.</p>
+      <div class="decision-grid">
+        <!-- Ortak Karar Modülü -->
+        <div class="card glass">
+          <div class="card-header">
+            <h2>🎬 Ne İzlesek / Ne Yesek?</h2>
+            <span class="badge-soft" id="room-code-display">Oda Hazır</span>
+          </div>
+          <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+            <button id="create-room-btn" class="btn-primary">➕ Oda Oluştur</button>
+            <button id="copy-room-btn" class="btn-secondary">🔗 Link Kopyala</button>
+          </div>
+          <div id="match-alert" class="match-banner" style="display:none;"></div>
+          <div id="swipe-card-box"></div>
+          <div class="swipe-actions">
+            <button id="swipe-pass" class="swipe-btn pass">✕ Geç</button>
+            <button id="swipe-like" class="swipe-btn like">♥ Beğen</button>
+          </div>
+        </div>
+
+        <!-- Akıllı Hediye Bulucu -->
+        <div class="card glass">
+          <div class="card-header">
+            <h2>🎁 Akıllı Hediye Bulucu</h2>
+          </div>
+          <form id="gift-form" class="gift-filters">
+            <select id="gift-who">
+              <option value="all">Kime? (Tümü)</option>
+              <option value="sevgili">❤️ Sevgili</option>
+              <option value="arkadas">🤝 Arkadaş</option>
+              <option value="aile">🏡 Aile</option>
+            </select>
+            <select id="gift-interest">
+              <option value="all">İlgi Alanı? (Tümü)</option>
+              <option value="kahve">☕ Kahve & Keyif</option>
+              <option value="teknoloji">💻 Teknoloji</option>
+              <option value="oyun">🎮 Oyun & Ekipman</option>
+              <option value="kitap">📚 Kitap & Kültür</option>
+            </select>
+            <select id="gift-budget">
+              <option value="all">Bütçe? (Tümü)</option>
+              <option value="low">500 ₺ Altı</option>
+              <option value="mid">500 - 1.500 ₺</option>
+              <option value="high">1.500 ₺ Üzeri</option>
+            </select>
+            <button type="submit" class="btn-primary">Hediye Bul</button>
+          </form>
+          <div id="gift-results" class="gift-list"></div>
+        </div>
       </div>
     </section>
 
     <!-- SEKME 3: ÖDÜLLER & İNDİRİM ÇEKLERİ -->
     <section id="tab-rewards" class="tab-content">
       <div class="card glass">
-        <h2>🎁 Kazanılan Ödüller & İndirim Çekleri</h2>
-        <p class="muted">Adım 3'te buraya XP ile açılan indirim kuponları gelecek.</p>
+        <div class="card-header">
+          <h2>🏆 Kazanılan Ödüller & İndirim Çekleri</h2>
+          <span class="xp-badge" id="rewards-xp-status">Mevcut Puanın: 0 XP</span>
+        </div>
+        <p class="muted" style="margin-bottom:1.2rem;">Planlayıcı sekmesinde görev ve alışkanlık tamamladıkça yeni indirim çeklerinin kilidi otomatik açılır.</p>
+        <div id="coupons-grid" class="coupons-grid"></div>
       </div>
     </section>
   </main>
@@ -157,7 +202,9 @@
     <span class="dev-sign">Geliştirici: <strong>Batuhan Bayer</strong></span>
   </footer>
 
+  <script src="js/data.js"></script>
   <script src="js/planner.js"></script>
+  <script src="js/decision.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
